@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Implementaton for the quizaccess_proctoring plugin.
+ * Implementation for the quizaccess_proctoring plugin.
  *
  * @package    quizaccess_proctoring
  * @copyright  2020 Brain Station 23
@@ -30,6 +30,8 @@ defined('MOODLE_INTERNAL') || die();
  * quizaccess_proctoring
  */
 class quizaccess_proctoring extends \mod_quiz\local\access_rule_base {
+    public const _JS_DETAIL_DEBUG = false;
+
     /**
      * Check is preflight check is required.
      *
@@ -159,6 +161,8 @@ class quizaccess_proctoring extends \mod_quiz\local\access_rule_base {
         $record->camshotdelay = $camshotdelay;
         $record->enablescreenshare = $enablescreenshare;
         $record->faceidcheck = $faceidcheck;
+        $record->version = NED::get_config('version');
+        $record->detail_debug = static::_JS_DETAIL_DEBUG;
 
         NED::js_call_amd('startAttempt', 'setupBeforeAttempt', $record);
 
@@ -375,6 +379,8 @@ class quizaccess_proctoring extends \mod_quiz\local\access_rule_base {
             $record->image_width = NED::cfg_imagewidth();
             $record->enablescreenshare = NED::cfg_enablescreenshare();
             $record->quizurl = $cm->get_url()->out(false);
+            $record->version = NED::get_config('version');
+            $record->detail_debug = static::_JS_DETAIL_DEBUG;
 
             NED::js_call_amd('startAttempt', 'setup', $record);
         }

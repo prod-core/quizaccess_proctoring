@@ -96,6 +96,9 @@ body.quizaccess_proctoring #mod_quiz_navblock #video.navblock-video{
 .quizaccess_proctoring-container video:not([height]) {
     display: none;
 }
+.singlebutton.quizstartbuttondiv + .quizaccess_proctoring_preflight_form {
+    display: none;
+}
 .quizaccess_proctoring_preflight_form #id_submitbutton {
     display: none;
 }
